@@ -25,10 +25,9 @@ namespace Neleus.DependencyInjection.Extensions
 
         public TService GetByName(string name, params object[] args)
         {
-            Type implementationType;
-            if (!_registrations.TryGetValue(name, out implementationType))
+            if (!_registrations.TryGetValue(name, out Type implementationType))
                 throw new ArgumentException("No service is registered for given name");
-            return ActivatorUtilities.CreateInstance<TService>(_serviceProvider, args);
+            return (TService)ActivatorUtilities.CreateInstance(_serviceProvider, implementationType, args);
         }
     }
 }
