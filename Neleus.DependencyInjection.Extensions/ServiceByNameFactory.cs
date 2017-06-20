@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Neleus.DependencyInjection.Extensions
 {
@@ -20,6 +21,13 @@ namespace Neleus.DependencyInjection.Extensions
             if (!_registrations.TryGetValue(name, out implementationType))
                 throw new ArgumentException("No service is registered for given name");
             return (TService)_serviceProvider.GetService(implementationType);
+        }
+
+        public TService GetByName(string name, params object[] args)
+        {
+            if (!_registrations.TryGetValue(name, out Type implementationType))
+                throw new ArgumentException("No service is registered for given name");
+            return (TService)ActivatorUtilities.CreateInstance(_serviceProvider, implementationType, args);
         }
     }
 }
