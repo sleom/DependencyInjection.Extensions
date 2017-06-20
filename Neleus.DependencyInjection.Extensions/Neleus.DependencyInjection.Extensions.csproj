@@ -7,6 +7,7 @@
     <Company>Neleus</Company>
     <Copyright>Neleus</Copyright>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <Version>1.1.0-alpha</Version>
   </PropertyGroup>
 
   <ItemGroup>
